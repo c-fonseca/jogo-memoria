@@ -91,7 +91,6 @@ const createCard = (character) => {
   const back = createElement('div', 'face back');
 
   front.style.backgroundImage = `url('../images/${character}.png')`;
-  
 
   card.appendChild(front);
   card.appendChild(back);
@@ -122,8 +121,21 @@ const startTimer = () => {
 
 }
 
+window.addEventListener('beforeunload', () => {
+
+  localStorage.removeItem('player');
+});
+
+
 window.onload = () => {
-  spanPlayer.innerHTML = localStorage.getItem('player');
-  startTimer();
-  loadGame();
+
+  const playerName = localStorage.getItem('player');
+  if (!playerName) {
+    window.location.href = '../index.html';
+  } else {
+
+    spanPlayer.innerHTML = playerName;
+    startTimer();
+    loadGame();
+  }
 }
