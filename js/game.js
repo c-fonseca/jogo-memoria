@@ -139,3 +139,10 @@ window.onload = () => {
     loadGame();
   }
 }
+
+module.exports = { 
+  checkEndGame,
+  createCard,
+  startTimer,
+  loadGame
+};
